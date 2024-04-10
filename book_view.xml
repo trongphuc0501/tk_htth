@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+	<!--tnhp search view-->
+		<record model="ir.ui.view" id="view_tnhp_search">
+			<field name="name">tnhp.search</field>
+			<field name="model">tnhp.tnhp</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="tnhp Information Search">
+					<field name="hoc_phan" string="tnhp Name"/>
+					
+				</search>
+			</field>
+		</record>
+		
+	<!--tnhp tree view-->
+		<record model="ir.ui.view" id="view_tnhp_tree">
+			<field name="name">tnhp.tree</field>
+			<field name="model">tnhp.tnhp</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="List of tnhps">
+					<field name="hoc_phan"/>
+					<field name="so_tin_chi"/>
+					<field name="hoc_phan_tien_quyet"/>
+				</tree>
+			</field>
+		</record>
+	
+	<!--tnhp form view-->
+		<record model="ir.ui.view" id="view_tnhp_form">
+			<field name="name">tnhp.form</field>
+			<field name="model">tnhp.tnhp</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="tnhp">
+						<field name="hoc_phan" string="Học phần:"/>
+						<field name="so_tin_chi" string="Số tín chỉ:"/>
+						<field name="hoc_phan_tien_quyet" string="Học phần tiên quyết:"/>
+						
+				</form>
+			</field>
+		</record>
+
+		<!-- <record model="ir.ui.view" id="view_tnhp_form">
+			<field name="name">tnhp.form</field>
+			<field name="model">tnhp.tnhp</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="tnhp">
+						<field name="name" string="Name:"/>
+						<field name="author" string="Author(s):"/>
+						<field name="genre" string="Genre"/>
+						<field name="published_date" string="Published Date:"/>
+						<field name="active" string="Active ?"/>
+						<field name="pages" string="Number of pages:"/>
+						<field name="notes" string="My Notes" placeholder="Put details of this tnhp..."/>
+				</form>
+			</field>
+		</record> -->
+		
+	<!--tnhp Action-->
+		 <record model="ir.actions.act_window" id="action_tnhp">
+            <field name="name">Thông tin chi tiết</field>
+            <field name="res_model">tnhp.tnhp</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+		
+		 <record model="ir.actions.act_window" id="action_tnhp_tree">
+            <field name="name">Thông tin chi tiết</field>
+            <field name="res_model">tnhp.tnhp</field>
+            <field name="view_type">tree</field>
+            <field name="view_mode">tree</field>
+        </record>
+	</data>
+
+	<!-- tnlhp Action -->
+	<data>
+		<!--tnhp search view-->
+			<record model="ir.ui.view" id="view_tnlhp_search">
+				<field name="name">tnlhp.search</field>
+				<field name="model">tnlhp.tnlhp</field>
+				<field name="type">search</field>
+				<field name="arch" type="xml">
+					<search string="tnlhp Information Search">
+						<field name="ten_hp" string="tnlhp Name"/>
+						
+					</search>
+				</field>
+			</record>
+			
+		<!--tnlhp tree view-->
+			<record model="ir.ui.view" id="view_tnlhp_tree">
+				<field name="name">tnlhp.tree</field>
+				<field name="model">tnlhp.tnlhp</field>
+				<field name="type">tree</field>
+				<field name="arch" type="xml">
+					<tree string="List of tnlhps">
+						<field name="ma_lop_hp"/>
+						<field name="ten_hp"/>
+						<field name="giang_vien"/>
+						<field name="ngay_bd"/>
+						<field name="ngay_kt"/>
+						<field name="thong_bao"/>
+					</tree>
+				</field>
+			</record>
+		
+		<!--tnlhp form view-->
+			<record model="ir.ui.view" id="view_tnlhp_form">
+				<field name="name">tnlhp.form</field>
+				<field name="model">tnlhp.tnlhp</field>
+				<field name="type">form</field>
+				<field name="arch" type="xml">
+					<form string="tnlhp">
+							<field name="ma_lop_hp" string="Mã lớp học phần:"/>
+							<field name="ten_hp" string="Tên học phần:"/>
+							<field name="giang_vien" string="Tên giảng viên:"/>
+							<field name="ngay_bd" string="Ngày bắt đầu:"/>
+							<field name="ngay_kt" string="Ngày kết thúc:"/>
+							<field name="thong_bao" string="Thông báo:"/>
+							
+					</form>
+				</field>
+			</record>
+	
+			
+		<!--tnhp Action-->
+			 <record model="ir.actions.act_window" id="action_tnlhp">
+				<field name="name">Thông tin chi tiết</field>
+				<field name="res_model">tnlhp.tnlhp</field>
+				<field name="view_type">form</field>
+				<field name="view_mode">tree,form</field>
+			</record>
+			
+			 <record model="ir.actions.act_window" id="action_tnlhp_tree">
+				<field name="name">Thông tin chi tiết</field>
+				<field name="res_model">tnlhp.tnlhp</field>
+				<field name="view_type">tree</field>
+				<field name="view_mode">tree</field>
+			</record>
+		</data>
+</openerp>
