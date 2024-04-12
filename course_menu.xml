@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data>
 	<!--tn_hp Menu-->
+    <data>
 		<menuitem id="tnhp_parent" name="Course Management" icon="STOCK_OPEN"/>
 		<menuitem id="menu_tnhp_parent" name="Tính năng học phần" parent="tnhp_parent"/>
 		<menuitem action="action_tnhp" id="menu_tnhp_tnhp" parent="menu_tnhp_parent" string="Result"/>
 		<menuitem action="action_tnhp_tree" name="Danh sách học phần" id="menu_tnhp_tree" parent="menu_tnhp_parent" string="Danh sách học phần"/>
-
-	
 	</data>
+
 	<!--tn_lhp Menu-->
 	<data>
 		<menuitem id="menu_tnlhp_parent" name="Tính năng lớp học phần" parent="tnhp_parent"/>
 		<menuitem action="action_tnlhp" id="menu_tnlhp_tnlhp" parent="menu_tnlhp_parent" string="Result"/>
 		<menuitem action="action_tnlhp_tree" name="Danh sách lớp học phần" id="menu_tnlhp_tree" parent="menu_tnlhp_parent" string="Danh sách học phần"/>
+	</data>
+
+	<!-- tndk -->
+	<data>
+		<menuitem id="menu_tndk_parent" name="Tính năng đăng ký" parent="tnhp_parent"/>
+		<menuitem action="action_tndk" id="menu_tndk_tndk" parent="menu_tndk_parent" string="Result"/>
+		<menuitem action="action_tndk_tree" name="Thông tin đăng ký chi tiết" id="menu_tndk_tree" parent="menu_tndk_parent" string="Thông tin đăng ký chi tiết"/>
 	</data>
 </openerp>

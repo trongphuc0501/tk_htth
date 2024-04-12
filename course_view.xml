@@ -142,4 +142,63 @@
 				<field name="view_mode">tree</field>
 			</record>
 		</data>
+
+	<!-- tndk Action -->
+	<data>
+		<!--tnhp search view-->
+			<record model="ir.ui.view" id="view_tndk_search">
+				<field name="name">tndk.search</field>
+				<field name="model">tndk.tndk</field>
+				<field name="type">search</field>
+				<field name="arch" type="xml">
+					<search string="tndk Information Search">
+						<field name="ma_dang_ky" string="tndk mdk"/>
+						<field name="noi_dung" string="tndk noidung"/>
+						
+					</search>
+				</field>
+			</record>
+			
+		<!--tndk tree view-->
+			<record model="ir.ui.view" id="view_tndk_tree">
+				<field name="name">tndk.tree</field>
+				<field name="model">tndk.tndk</field>
+				<field name="type">tree</field>
+				<field name="arch" type="xml">
+					<tree string="List of tndks">
+						<field name="ma_dang_ky"/>
+						<field name="noi_dung"/>
+					</tree>
+				</field>
+			</record>
+		
+		<!--tndk form view-->
+			<record model="ir.ui.view" id="view_tndk_form">
+				<field name="name">tndk.form</field>
+				<field name="model">tndk.tndk</field>
+				<field name="type">form</field>
+				<field name="arch" type="xml">
+					<form string="tndk">
+							<field name="ma_dang_ky" string="Mã đăng ký:"/>
+							<field name="noi_dung" string="Nội dung:"/>
+					</form>
+				</field>
+			</record>
+	
+			
+		<!--tnhp Action-->
+			 <record model="ir.actions.act_window" id="action_tndk">
+				<field name="name">Thông tin chi tiết</field>
+				<field name="res_model">tndk.tndk</field>
+				<field name="view_type">form</field>
+				<field name="view_mode">tree,form</field>
+			</record>
+			
+			 <record model="ir.actions.act_window" id="action_tndk_tree">
+				<field name="name">Thông tin chi tiết</field>
+				<field name="res_model">tndk.tndk</field>
+				<field name="view_type">tree</field>
+				<field name="view_mode">tree</field>
+			</record>
+		</data>
 </openerp>

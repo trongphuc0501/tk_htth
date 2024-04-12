@@ -1,26 +1,7 @@
 # -*- coding: utf-8 -*- #su dung bo ma Unicode
 from openerp.osv import fields,osv
-
-# class tnhp(osv.osv):
-#     _name = 'tnhp.tnhp'
-#     _columns = {
-#         'hoc_phan': fields.char('Học Phần', size=25, required=True, translate=True),
-#         'so_tin_chi': fields.integer('Số tín chỉ', size=5, required=True, translate=True), 
-#         #'hoc_phan_tien_quyet': fields.char('Học phần tiên quyết')
-#         'hoc_phan_tien_quyet': fields.many2many('tnhp.tnhp', 'hoc_phan', 'Học phần tiên quyết')
-#     }
-#     _defaults = {
-#         #'hoc_phan_tien_quyet': 'null',
-#         'so_tin_chi': 1
-#     }
-#     def _check_stc(self, cr, uid, ids, context=None):
-#         for tnhp in self.browse(cr, uid, ids, context=context):
-#             if tnhp.so_tin_chi<=0:
-#                 return False
-#         return True
-#     _constraints = [
-#         (_check_stc, 'Số tín chỉ phải lớn hơn 0!', ['so_tin_chi']),
-#     ]
+from datetime import datetime
+import random
 
 class tnhp(osv.osv):
     _name = 'tnhp.tnhp'
@@ -63,21 +44,40 @@ class tnlhp(osv.osv):
 
 tnlhp()
 
-# class tnhp (osv.osv):
-#     _name='tnhp.tnhp'
-#     _columns = {
-#         #cac thuoc tinh cua lop tnhp
-#         'name':fields.char('Tên sách', size=25, required=True, translate=True),
-#         'pages':fields.integer('Tổng số trang'),
-#         'author':fields.char('Tác giả',size=100, required=True, translate=True),
-#         'genre':fields.selection([('tt','Truyện tranh'),('tn','Truyện ngắn'),
-#                                  ('tth','Tiểu thuyết'),('th','Thơ')],'Thể loại'),
-#         'published_date':fields.datetime('Ngày phát hành'),
-#         'active':fields.boolean('Đang bán ?'),
-#         'notes':fields.text('Chi tiết')
-#     }
-#     _defaults={
-#         'pages':0,
-#         'active':True
-#     }
-# tnhp() #tao 1 the hien cho lop tnhp_tnhp
+class tndk(osv.osv):
+    _name = 'tndk.tndk'
+    _columns = {
+        'ma_dang_ky': fields.char('Mã đăng ký',),
+        'noi_dung': fields.many2many('tnlhp.tnlhp', 'tndk_noi_dung_rel', 'tndk_id', 'tnlhp_id', 'Nội dung')
+    }
+    def _generate_ma_dang_ky(self, cr, uid, context=None):
+        ngay_dang_ky = datetime.now().strftime("%Y%m%d")
+        so_ngau_nhien = '{:02}'.format(random.randint(0, 99))
+        ma_dang_ky = "{}{}".format(ngay_dang_ky, so_ngau_nhien)
+        return ma_dang_ky
+
+    _defaults = {
+        'ma_dang_ky': _generate_ma_dang_ky
+    }
+    # def name_get(self, cr, uid, ids, context=None):
+    #     result = []
+    #     for record in self.browse(cr, uid, ids, context=context):
+    #         # Tạo chuỗi hiển thị từ các trường dữ liệu của đối tượng record
+    #         display_name = "[{}] {} - {} - {} - {}".format(record.ma_lop_hp, record.ten_hp, record.giang_vien, record.ngay_bd, record.ngay_kt)
+    #         result.append((record.id, display_name))  # Thêm vào kết quả
+    #     return result
+    def name_get(self, cr, uid, ids, context=None):
+        result = []
+        for record in self.browse(cr, uid, ids, context=context):
+            ten_hp = ''
+            # Lấy thông tin từ trường many2many 'noi_dung' để hiển thị
+            for tnlhp_record in record.noi_dung:
+                ten_hp += tnlhp_record.ten_hp + ', '
+            display_name = "{} - {}".format(record.ma_dang_ky, ten_hp)
+            result.append((record.id, display_name))
+        return result
+tndk()
+
+
+
+
