@@ -1,16 +1,50 @@
 # -*- coding: utf-8 -*- #su dung bo ma Unicode
 from openerp.osv import fields,osv
 
+# class tnhp(osv.osv):
+#     _name = 'tnhp.tnhp'
+#     _columns = {
+#         'hoc_phan': fields.char('Học Phần', size=25, required=True, translate=True),
+#         'so_tin_chi': fields.integer('Số tín chỉ', size=5, required=True, translate=True), 
+#         #'hoc_phan_tien_quyet': fields.char('Học phần tiên quyết')
+#         'hoc_phan_tien_quyet': fields.many2many('tnhp.tnhp', 'hoc_phan', 'Học phần tiên quyết')
+#     }
+#     _defaults = {
+#         #'hoc_phan_tien_quyet': 'null',
+#         'so_tin_chi': 1
+#     }
+#     def _check_stc(self, cr, uid, ids, context=None):
+#         for tnhp in self.browse(cr, uid, ids, context=context):
+#             if tnhp.so_tin_chi<=0:
+#                 return False
+#         return True
+#     _constraints = [
+#         (_check_stc, 'Số tín chỉ phải lớn hơn 0!', ['so_tin_chi']),
+#     ]
+
 class tnhp(osv.osv):
     _name = 'tnhp.tnhp'
     _columns = {
         'hoc_phan': fields.char('Học Phần', size=25, required=True, translate=True),
         'so_tin_chi': fields.integer('Số tín chỉ', size=5, required=True, translate=True), 
-        'hoc_phan_tien_quyet': fields.char('Học phần tiên quyết')
+        'hoc_phan_tien_quyet': fields.many2many('tnhp.tnhp', 'hoc_phan_tien_quyet_rel', 'hoc_phan_id', 'hoc_phan_tien_quyet_id', 'Học phần tiên quyết')
     }
     _defaults = {
-        'hoc_phan_tien_quyet': 'null' 
+        'so_tin_chi': 1
     }
+    def _check_stc(self, cr, uid, ids, context=None):
+        for tnhp in self.browse(cr, uid, ids, context=context):
+            if tnhp.so_tin_chi <= 0:
+                return False
+        return True
+    _constraints = [
+        (_check_stc, 'Số tín chỉ phải lớn hơn 0!', ['so_tin_chi']),
+    ]
+    def name_get(self, cr, uid, ids, context=None):
+        result = []
+        for record in self.browse(cr, uid, ids, context=context):
+            result.append((record.id, record.hoc_phan))  # Hiển thị tên của học phần
+        return result
 
 tnhp() #tao 1 the hien cho lop tnhp_tnhp
 

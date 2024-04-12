@@ -9,7 +9,7 @@
     "depends":["base"],#khai bao nhung module lien quan
     "init_xml":[],
     "demo_xml":[],
-    "update_xml":["book_view.xml","book_menu.xml"],
+    "update_xml":["course_view.xml","course_menu.xml"],
     "active":False,
     "installable":True,
 }
